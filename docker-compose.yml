@@ -1,0 +1,39 @@
+version: '3.8'
+
+services:
+  # Servicio de base de datos PostgreSQL
+  db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: user_management_db
+    ports:
+      - "5433:5432"
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+  # Servicio de Backend (Node.js)
+  backend:
+    build:
+      context: ./user-management
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@db:5432/user_management_db
+      JWT_SECRET: tu_secreto
+    ports:
+      - "5000:5000"
+    depends_on:
+      - db
+
+  # Servicio de Frontend (React)
+  frontend:
+    build:
+      context: ./user-management-frontend
+    ports:
+      - "3000:3000"
+    depends_on:
+      - backend
+
+volumes:
+  db_data:
+
