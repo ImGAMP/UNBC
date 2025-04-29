@@ -1,6 +1,6 @@
 # 👥 UNBC - User Management System (ABM/CRUD)
 
-Este proyecto consiste en el desarrollo de un sistema de administración de usuarios que permite realizar operaciones de **Alta, Baja, Modificación y Consulta (CRUD)**. Cada usuario tiene los siguientes atributos:
+Este proyecto es una solución completa para la gestión de usuarios, que permite realizar operaciones de **Alta, Baja, Modificación y Consulta (CRUD)**. Los usuarios tienen los siguientes atributos:
 
 - Nombre
 - Apellido
@@ -8,33 +8,34 @@ Este proyecto consiste en el desarrollo de un sistema de administración de usua
 - Número de teléfono
 - Contraseña
 
-Los usuarios deben poder **loguearse** para acceder al sistema de administración y gestionar los datos.
+El sistema incluye un flujo de **autenticación** para el login de usuarios, que permite acceder al panel de administración y gestionar los datos.
 
 ---
 
-## ⚙️ Tecnologías utilizadas
+## ⚙️ Tecnologías Utilizadas
 
-- **Laravel** con Livewire
-- **TailwindCSS**
-- **VueJS** (opcional según versión)
-- **PHP 8+**
-- **MySQL / PostgreSQL** (según configuración local)
-- **Autenticación Laravel Breeze / Jetstream**
+- **Frontend**: React
+- **Backend**: Node.js + Express
+- **Base de Datos**: PostgreSQL
+- **Orquestación**: Docker y Docker Compose
 
 ---
 
-## 📂 Estructura general del proyecto
+## 📂 Estructura del Repositorio
 
 ```
 UNBC/
-├── app/
-├── database/
-│   └── migrations/     # Migraciones para crear la tabla de usuarios
-├── resources/
-│   └── views/          # Vistas Livewire
-├── routes/
-│   └── web.php         # Rutas del sistema CRUD
-└── README.md
+├── user-management/              # Backend - API REST con Express
+│   ├── src/
+│   ├── Dockerfile
+│   └── package.json
+│
+├── user-management-frontend/    # Frontend - Aplicación React
+│   ├── src/
+│   ├── Dockerfile
+│   └── package.json
+│
+└── docker-compose.yml           # Orquestación de servicios
 ```
 
 ---
@@ -47,46 +48,32 @@ git clone https://github.com/ImGAMP/UNBC.git
 cd UNBC
 ```
 
-### 2. Instalar dependencias
+### 2. Levantar los servicios con Docker
 ```bash
-composer install
-npm install && npm run dev
+docker-compose up --build
 ```
 
-### 3. Configurar el entorno
-```bash
-cp .env.example .env
-php artisan key:generate
-```
-
-Configura tu archivo `.env` con los datos de la base de datos que vayas a usar (MySQL o PostgreSQL).
-
-### 4. Ejecutar migraciones
-```bash
-php artisan migrate
-```
-
-### 5. Levantar el servidor local
-```bash
-php artisan serve
-```
+Esto levantará el backend en Express, el frontend en React y una base de datos PostgreSQL lista para usarse.
 
 ---
 
-## 🔐 Autenticación
+## 🧪 Endpoints y funcionalidades
 
-El sistema implementa login de usuarios. Se puede extender para recuperación de contraseña y control de roles según se necesite.
+- **Registro y login de usuarios**
+- **Operaciones CRUD**: crear, editar, listar y eliminar usuarios
+- **Validaciones básicas y hash de contraseñas**
+- **Separación clara entre frontend y backend**
 
 ---
 
-## 👨‍💻 Autor
+## 📜 Autor
 
 **Gustavo A. Mojica Perdigón**  
-Fullstack Engineer | Clean Architecture | Laravel & Vue Enthusiast  
+Fullstack Engineer | Clean Architecture | React & Express Developer  
 [LinkedIn](https://www.linkedin.com/in/imgamp-it/) | [GitHub](https://github.com/ImGAMP)
 
 ---
 
 ## 📝 Licencia
 
-MIT License – Libre uso con fines de aprendizaje o pruebas técnicas.
+MIT License – Puedes usar este proyecto como base para pruebas técnicas o desarrollo personal.
